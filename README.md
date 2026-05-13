@@ -19,6 +19,8 @@ This system automatically discovers blogs from the web, extracts useful informat
 ✅ Automated Dev.to comment posting API integration
 
 🏗️ Project Architecture
+
+
 <img width="251" height="722" alt="image" src="https://github.com/user-attachments/assets/58a4440b-fba7-49c6-b99b-d008a3ef7241" />
 
 ⚙️ Technologies Used
