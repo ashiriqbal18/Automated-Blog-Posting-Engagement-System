@@ -24,6 +24,8 @@ This system automatically discovers blogs from the web, extracts useful informat
 <img width="251" height="722" alt="image" src="https://github.com/user-attachments/assets/58a4440b-fba7-49c6-b99b-d008a3ef7241" />
 
 ⚙️ Technologies Used
+
+
 Frontend
 Streamlit
 Data Mining & Web Scraping
