@@ -19,44 +19,8 @@ This system automatically discovers blogs from the web, extracts useful informat
 ✅ Automated Dev.to comment posting API integration
 
 🏗️ Project Architecture
-AI Blog Intelligence System
-│
-├── app.py
-│   ├── Streamlit frontend
-│   ├── Navigation & UI
-│   ├── Dashboard rendering
-│   └── AI comment generation
-│
-├── file1.py
-│   ├── Blog scraping pipeline
-│   ├── Google SERP collection
-│   ├── Blog processing
-│   ├── NLP pipeline execution
-│   └── CSV generation
-│
-├── nlp_engine.py
-│   ├── Sentiment analysis
-│   ├── Ollama AI analysis
-│   ├── Hybrid LDA topic modeling
-│   └── TF-IDF keyword extraction
-│
-├── visuals.py
-│   ├── Sentiment charts
-│   ├── Pie charts
-│   ├── Scatter plots
-│   └── Word cloud generation
-│
-├── comment_generation.py
-│   ├── Human-like comment generation
-│   └── Mistral LLM integration
-│
-├── comment_poster.py
-│   ├── Dev.to API integration
-│   ├── Automated comment posting
-│   └── Posting logs
-│
-└── analyzed_blogs.csv
-    └── Final processed dataset
+<img width="251" height="722" alt="image" src="https://github.com/user-attachments/assets/58a4440b-fba7-49c6-b99b-d008a3ef7241" />
+
 ⚙️ Technologies Used
 Frontend
 Streamlit
