@@ -103,63 +103,51 @@ Built with Flask to provide:
 ## 🏗️ System Architecture
 
 
+
 ```mermaid
-flowchart LR
+flowchart TD
 
-subgraph Data Collection
-A[User Query]
-B[SerpAPI]
-C[Blog URLs]
-D[Web Scraper]
-end
+A[User Enters Search Query] --> B[SerpAPI Search]
 
-subgraph Data Processing
-E[Content Extraction]
-F[Text Preprocessing]
-G[Sentiment Analysis]
-H[TF-IDF Keyword Extraction]
-I[LDA Topic Modeling]
-end
+B --> C[Collect Blog URLs]
 
-subgraph AI Layer
-J[Phi-3 via Ollama]
-K[Mistral via Ollama]
-L[Blog Summarization]
-M[Comment Generation]
-end
+C --> D[Web Scraping & Content Extraction]
 
-subgraph Presentation Layer
-N[Flask Backend]
-O[Interactive Dashboard]
-end
+D --> E[Data Cleaning & Preprocessing]
 
-A --> B
-B --> C
-C --> D
-D --> E
-E --> F
+E --> E1[Lowercasing]
+E --> E2[Stopword Removal]
+E --> E3[Tokenization]
+E --> E4[Lemmatization]
+E --> E5[Text Normalization]
 
-F --> G
-F --> H
-F --> I
+E --> F[Sentiment Analysis]
+F --> F1[VADER Sentiment Score]
 
-G --> J
-H --> J
-I --> J
+E --> G[Keyword Extraction]
+G --> G1[TF-IDF Vectorization]
 
-G --> K
-H --> K
-I --> K
+E --> H[Topic Modeling]
+H --> H1[LDA Topic Discovery]
 
-J --> L
-K --> M
+F1 --> I[Analysis Results]
+G1 --> I
+H1 --> I
 
-L --> N
-M --> N
+I --> J[Local LLM Processing]
 
-N --> O
+J --> J1[Blog Summarization<br/>Phi-3 / Mistral]
+
+J --> J2[Comment Generation<br/>Phi-3 / Mistral]
+
+J1 --> K[Generated Summary]
+J2 --> L[Generated Comment]
+
+K --> M[Flask Dashboard]
+L --> M
+
+M --> N[User Insights & Engagement]
 ```
-
 
 ---
 
