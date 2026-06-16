@@ -102,57 +102,21 @@ Built with Flask to provide:
 
 ## 🏗️ System Architecture
 
-```mermaid
-flowchart LR
+## 🚀 End-to-End Pipeline
 
-subgraph Data Collection
-A[User Query]
-B[SerpAPI]
-C[Blog URLs]
-D[Web Scraping]
-end
-
-subgraph NLP Processing
-E[Text Cleaning]
-F[Sentiment Analysis]
-G[TF-IDF]
-H[LDA Topic Modeling]
-end
-
-subgraph AI Layer
-I[Phi-3]
-J[Mistral]
-K[Summarization]
-L[Comment Generation]
-end
-
-subgraph Presentation Layer
-M[Flask Backend]
-N[Dashboard UI]
-end
-
-A --> B
-B --> C
-C --> D
-D --> E
-
-E --> F
-E --> G
-E --> H
-
-F --> K
-G --> K
-H --> K
-
-F --> L
-G --> L
-H --> L
-
-K --> M
-L --> M
-
-M --> N
-```
+1. User enters a topic or keyword.
+2. SerpAPI discovers relevant blogs.
+3. Blog URLs are scraped and content is extracted.
+4. Text is cleaned and preprocessed.
+5. NLP modules perform:
+   - Sentiment Analysis (VADER)
+   - Keyword Extraction (TF-IDF)
+   - Topic Modeling (LDA)
+6. Results are sent to local LLMs (Phi-3/Mistral).
+7. LLMs generate:
+   - Blog Summaries
+   - Context-Aware Comments
+8. Flask dashboard presents insights to the user.
 
 
 ---
