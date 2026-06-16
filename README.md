@@ -102,41 +102,58 @@ Built with Flask to provide:
 
 ## 🏗️ System Architecture
 
-```text
-User Query
-      │
-      ▼
-  SerpAPI Search
-      │
-      ▼
- Blog URL Collection
-      │
-      ▼
- Web Scraping
-      │
-      ▼
- Content Extraction
-      │
-      ▼
- Text Preprocessing
-      │
-      ├────────► Sentiment Analysis (VADER)
-      │
-      ├────────► Keyword Extraction (TF-IDF)
-      │
-      ├────────► Topic Modeling (LDA)
-      │
-      ▼
- Local LLM Processing
-(Phi-3 / Mistral via Ollama)
-      │
-      ├────────► Blog Summarization
-      │
-      └────────► Comment Generation
-      │
-      ▼
- Flask Dashboard
+```mermaid
+flowchart LR
+
+subgraph Data Collection
+A[User Query]
+B[SerpAPI]
+C[Blog URLs]
+D[Web Scraping]
+end
+
+subgraph NLP Processing
+E[Text Cleaning]
+F[Sentiment Analysis]
+G[TF-IDF]
+H[LDA Topic Modeling]
+end
+
+subgraph AI Layer
+I[Phi-3]
+J[Mistral]
+K[Summarization]
+L[Comment Generation]
+end
+
+subgraph Presentation Layer
+M[Flask Backend]
+N[Dashboard UI]
+end
+
+A --> B
+B --> C
+C --> D
+D --> E
+
+E --> F
+E --> G
+E --> H
+
+F --> K
+G --> K
+H --> K
+
+F --> L
+G --> L
+H --> L
+
+K --> M
+L --> M
+
+M --> N
 ```
+
 
 ---
 
