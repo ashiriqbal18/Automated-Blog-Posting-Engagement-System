@@ -326,4 +326,3 @@ This project was developed for educational and research purposes. Generated summ
 
 **Muhammad Ashir Iqbal**
 
-Programming for Artificial Intelligence Project
