@@ -324,7 +324,7 @@ This project was developed for educational and research purposes. Generated summ
 
 ---
 
-## 👨‍💻 Authors
+## 👨‍💻 Author
 
 **Muhammad Ashir Iqbal**
 
