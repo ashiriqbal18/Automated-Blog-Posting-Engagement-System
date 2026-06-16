@@ -195,6 +195,14 @@ User Query
 BlogMind-AI/
 │
 ├── app.py
+├── scraper.py
+├── preprocessing.py
+├── sentiment.py
+├── keyword_extraction.py
+├── topic_modeling.py
+├── summarizer.py
+├── comment_generator.py
+|
 ├── templates/
 │   ├── dashboard.html
 │
@@ -203,57 +211,8 @@ BlogMind-AI/
 │
 ├── data/
 │   ├── blogs.csv
-│
-├── modules/
-│   ├── scraper.py
-│   ├── preprocessing.py
-│   ├── sentiment.py
-│   ├── keyword_extraction.py
-│   ├── topic_modeling.py
-│   ├── summarizer.py
-│   ├── comment_generator.py
-│
-├── requirements.txt
-│
+|
 └── README.md
-```
-
----
-
-## ⚙️ Installation
-
-### Clone Repository
-
-```bash
-git clone https://github.com/yourusername/BlogMind-AI.git
-
-cd BlogMind-AI
-```
-
-### Create Virtual Environment
-
-```bash
-python -m venv venv
-```
-
-Activate environment:
-
-#### Windows
-
-```bash
-venv\Scripts\activate
-```
-
-#### Linux / macOS
-
-```bash
-source venv/bin/activate
-```
-
-### Install Dependencies
-
-```bash
-pip install -r requirements.txt
 ```
 
 ---
