@@ -6,6 +6,7 @@
 BlogMind AI is an intelligent content analysis and engagement automation platform that leverages Natural Language Processing (NLP), Machine Learning, and Local Large Language Models (LLMs) to discover, analyze, summarize, and interact with blog content automatically.
 
 The platform is designed to help users identify trending topics, understand audience sentiment, generate concise summaries, and create context-aware comments for improved engagement.
+
 <img width="1856" height="847" alt="image" src="https://github.com/user-attachments/assets/9b1e6f07-f0bb-40d9-b51b-6152ecaa5dee" />
 
 ---
