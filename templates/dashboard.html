@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Dashboard | BlogMind AI</title>
+
+    <link rel="stylesheet" href="/static/style.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <div class="navbar">
+        <div class="logo">🧠 BlogMind AI</div>
+
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/dashboard">Dashboard</a>
+            <a href="/mine">Data Mining</a>
+        </div>
+    </div>
+
+
+    <div class="main">
+
+        <h1 class="page-title">Dashboard Overview</h1>
+
+
+        <!-- STATS -->
+
+        <div class="stats">
+
+            <div class="stat-card">
+                <h2>{{ stats.blogs }}</h2>
+                <p>Blogs Analyzed</p>
+            </div>
+
+
+            <div class="stat-card">
+                <h2>{{ stats.comments }}</h2>
+                <p>Total Comments</p>
+            </div>
+
+
+            <div class="stat-card">
+                <h2>{{ stats.sentiment }}</h2>
+                <p>Average Sentiment</p>
+            </div>
+
+        </div>
+
+
+
+        <!-- BLOG CARDS -->
+
+        <div class="blogs-container">
+
+
+        {% for row in table %}
+
+
+        <details class="blog-card">
+
+
+            <summary>
+
+
+                <div class="summary-left">
+                    📄 {{ row.title }}
+                </div>
+
+
+                <div class="summary-right">
+                    <span class="arrow"></span>
+                </div>
+
+
+            </summary>
+
+
+
+            <div class="blog-content">
+
+
+                <!-- TOP INFO -->
+
+                <div class="info-grid">
+
+
+                    <div class="info-box">
+                        <h4>Author</h4>
+                        <p>{{ row.author }}</p>
+                    </div>
+
+
+                    {% if row.source %}
+
+                    <div class="info-box">
+                        <h4>Source</h4>
+                        <p>{{ row.source }}</p>
+                    </div>
+
+                    {% endif %}
+
+
+
+                    {% if row.date %}
+
+                    <div class="info-box">
+                        <h4>Date</h4>
+                        <p>{{ row.date }}</p>
+                    </div>
+
+                    {% endif %}
+
+
+
+                    {% if row.sentiment %}
+
+                    <div class="info-box">
+                        <h4>Sentiment</h4>
+                        <p>{{ row.sentiment }}</p>
+                    </div>
+
+                    {% endif %}
+
+
+                </div>
+
+
+
+
+
+                <!-- TOPIC -->
+
+
+                {% if row.topic_theme %}
+
+                <div class="section">
+
+                    <h3>🧠 Topic</h3>
+
+                    <p>{{ row.topic_theme }}</p>
+
+                </div>
+
+                {% endif %}
+
+
+
+
+
+
+                <!-- KEYWORDS -->
+
+
+                {% if row.keywords %}
+
+                <div class="section">
+
+                    <h3>🔑 Keywords</h3>
+
+                    <p>{{ row.keywords }}</p>
+
+                </div>
+
+                {% endif %}
+
+
+
+
+
+
+                <!-- MOTIVE -->
+
+
+                {% if row.motive %}
+
+                <div class="section">
+
+                    <h3>🎯 Motive</h3>
+
+                    <p>{{ row.motive }}</p>
+
+                </div>
+
+                {% endif %}
+
+
+
+
+
+
+
+                <!-- TONE -->
+
+
+                {% if row.tone %}
+
+                <div class="section">
+
+                    <h3>✍️ Tone</h3>
+
+                    <p>{{ row.tone }}</p>
+
+                </div>
+
+                {% endif %}
+
+
+
+
+
+
+
+                <!-- SUMMARY -->
+
+
+                {% if row.summary %}
+
+                <div class="section">
+
+                    <h3>📄 Summary</h3>
+
+                    <p>{{ row.summary }}</p>
+
+                </div>
+
+                {% endif %}
+
+
+
+
+
+
+
+
+                <!-- COMMENT ANALYSIS -->
+
+
+                <div class="section">
+
+
+                    <h3>💬 Comment Analysis</h3>
+
+
+                    <p>
+                    <strong>Total Comments:</strong>
+                    {{ row.comment_count }}
+                    </p>
+
+
+
+                    {% if row.positive_comments %}
+
+                    <p>
+                    <strong>Positive:</strong>
+                    {{ row.positive_comments }}
+                    </p>
+
+                    {% endif %}
+
+
+
+
+
+                    {% if row.neutral_comments %}
+
+                    <p>
+                    <strong>Neutral:</strong>
+                    {{ row.neutral_comments }}
+                    </p>
+
+                    {% endif %}
+
+
+
+
+
+                    {% if row.negative_comments %}
+
+                    <p>
+                    <strong>Negative:</strong>
+                    {{ row.negative_comments }}
+                    </p>
+
+                    {% endif %}
+
+
+
+                </div>
+
+
+
+
+
+
+
+                <!-- AI COMMENT -->
+
+
+                <div class="section">
+
+
+                    <h3>🤖 AI Generated Comment</h3>
+
+
+                    <button 
+                    class="generate-btn"
+                    onclick="generateComment(this)">
+
+                        Generate Comment
+
+                    </button>
+
+
+
+                    <div class="comment-result">
+
+                    </div>
+
+
+
+                </div>
+
+
+
+
+
+            </div>
+
+
+
+        </details>
+
+
+
+        {% endfor %}
+
+
+
+        </div>
+
+
+    </div>
+
+
+
+
+
+
+<script>
+
+
+function generateComment(button){
+
+
+    // get current blog card only
+
+    let card = button.closest(".blog-card");
+
+
+    let box = card.querySelector(".comment-result");
+
+
+
+    box.innerHTML = "⏳ Generating comment...";
+
+
+
+    fetch("/generate-comment")
+
+
+    .then(response => response.json())
+
+
+    .then(data => {
+
+
+
+        box.innerHTML = `
+
+
+        <div class="generated-box">
+
+
+            <h4>
+            ${data.title}
+            </h4>
+
+
+
+            <p>
+            <b>Summary:</b>
+            ${data.summary}
+            </p>
+
+
+
+
+            <p>
+            <b>AI Comment:</b>
+            </p>
+
+
+
+            <p>
+            ${data.comment}
+            </p>
+
+
+
+        </div>
+
+
+
+        `;
+
+
+
+    })
+
+
+
+    .catch(()=>{
+
+
+        box.innerHTML =
+        "❌ Failed generating comment";
+
+
+    });
+
+
+
+}
+
+
+
+</script>
+
+
+
+</body>
+
+</html>

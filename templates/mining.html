@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Data Mining | BlogMind AI</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- TOP NAVBAR -->
+<div class="navbar">
+    <div class="logo">🧠 BlogMind AI</div>
+
+    <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/dashboard">Dashboard</a>
+        <a href="/mine">Data Mining</a>
+    </div>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+    <div class="page-header">
+        <h1>Blog Mining Engine</h1>
+        <p>Enter a topic and let AI discover and analyze relevant blogs</p>
+    </div>
+
+    <div class="center-card">
+
+        <input type="text" id="keyword" placeholder="e.g. Artificial Intelligence, Data Science, AI Agents">
+
+        <button onclick="startMining()" id="btn">
+            🚀 Run Analysis
+        </button>
+
+        <!-- STATUS BOX -->
+        <div id="status" class="status-box"></div>
+
+    </div>
+
+</div>
+
+<script>
+function startMining() {
+    let keyword = document.getElementById("keyword").value;
+    let status = document.getElementById("status");
+    let btn = document.getElementById("btn");
+
+    if (!keyword.trim()) {
+        status.innerHTML = "⚠️ Please enter a topic";
+        status.style.color = "#f87171";
+        return;
+    }
+
+    // Loading state
+    status.innerHTML = "⏳ Processing data mining...";
+    status.style.color = "#fbbf24";
+    btn.disabled = true;
+    btn.innerText = "Running...";
+
+    fetch("/mine", {
+        method: "POST",
+        headers: {"Content-Type": "application/x-www-form-urlencoded"},
+        body: "keyword=" + keyword
+    })
+    .then(res => res.json())
+    .then(data => {
+
+    status.innerHTML = "✅ Analysis Complete! Redirecting...";
+    status.style.color = "#34d399";
+
+    setTimeout(() => {
+        window.location.href = "/dashboard";
+    }, 1500);
+
+})
+    .catch(() => {
+        status.innerHTML = "❌ Something went wrong";
+        status.style.color = "#f87171";
+
+        btn.disabled = false;
+        btn.innerText = "🚀 Run Analysis";
+    });
+}
+</script>
+
+</body>
+</html>
